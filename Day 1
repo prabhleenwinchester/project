@@ -1,0 +1,26 @@
+Mount the sensors on the bowl and dispenser, integrate LED on the sensor
+Code for arduio getting the reedings from scale body sensor using HX711 
+#include <HX711_ADC.h>
+
+// Define the HX711 object
+HX711_ADC LoadCell;
+
+void setup() {
+  Serial.begin(115200);
+  LoadCell.begin();
+
+  // Set the calibration factor for your load cells
+  LoadCell.set_scale();
+  LoadCell.tare();
+}
+
+void loop() {
+  if (LoadCell.update()) {
+    // Read the weight in grams
+    float weight = LoadCell.getData();
+    Serial.print("Weight (g): ");
+    Serial.println(weight);
+  }
+
+  delay(1000); // Update weight every second
+}
