@@ -1,22 +1,22 @@
-# project
-assessment project smart pet food dispenser using arduino, rapaspberry pi 
-# Pet Food Dispenser with Remote Monitoring
+project
+Smart pet food dispenser
+Pet Food Dispenser with Remote Monitoring
 
-## Overview
+#Overview
 
-This project aims to create an automated pet food dispenser system with remote monitoring capabilities. The system uses weight sensors to monitor the food levels in both the pet bowl and the dispenser. When the food levels go below a certain threshold, the system sends notifications to the pet owner via SMS. The project combines an Arduino-based hardware setup with a Raspberry Pi for remote monitoring and control.
+The aim of this project is to make a smart pet food dispenser using Arduino and Raspberry Pi. The system uses scale body sensors to check the food levels in the food bowl and dispenser. When the food levels drop below 10gms in the bowl the LED light turns on and when the food levels drop below 50gms in the dispenser an SMS notification is sent to the phone.
 
-## Features
+#Features
 
-- Automatic pet food dispensing based on food levels.
-- Real-time monitoring and notifications via SMS.
-- Integration with Amazon Web Services (AWS) for data storage and analysis.
-- Customizable food level thresholds.
-- Remote control using the Raspberry Pi and SSH.
+- Indication using LED when the food levels are low in the Bowl.
+- Real-time notifications using SMS.
+- saving food levels in the S3 bucket
+- Thresholds can be changed.
+- controlled using SSH.
 
-## Components
+#Components
 
-- Arduino or Teensy (for sensor reading and control)
+- Arduino or Teensy2.0 
 - HX711 Load Cell Amplifier
 - Weight sensors for pet bowl and dispenser
 - Raspberry Pi (for remote monitoring and notifications)
@@ -25,26 +25,11 @@ This project aims to create an automated pet food dispenser system with remote m
 - Twilio API (for SMS notifications)
 - Other necessary electronic components (LEDs, resistors, wires)
 
-## Setup Instructions
+#Setup Instructions
 
-1. Connect the weight sensors (HX711) to your Arduino or Teensy.
-2. Upload the Arduino code for reading sensor data to your microcontroller.
+1. Connect the weight sensors (HX711) to Teensy 2.0.
+2. Add the Arduino code for reading sensor data to Raspberry Pi.
 3. Configure your Raspberry Pi to enable SSH and install the necessary software.
-4. Upload the Python script for remote monitoring and SMS notifications to your Raspberry Pi.
-5. Make the necessary connections and power arrangements.
-6. Start the system and ensure it's working as expected.
-
-## Usage
-
-1. Power on the system.
-2. Ensure the sensors are correctly calibrated.
-3. Monitor food levels remotely using your Raspberry Pi.
-4. Receive SMS notifications when food levels are low.
-
-## Folder Structure
-
-- `/Arduino`: Contains Arduino code for sensor reading and control.
-- `/RaspberryPi`: Contains Python code for remote monitoring and SMS notifications.
-- `/Documentation`: Includes circuit diagrams, setup instructions, and system overview.
-
+4. Write the Python code for the GSM module on Raspberry Pi.
+5. Start the system and ensure it's working.
 
