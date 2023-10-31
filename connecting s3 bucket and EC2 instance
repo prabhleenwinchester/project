@@ -1,0 +1,46 @@
+Note: The data will be stored and updated to the s3 bucket every 30 min to ensure encryption and security by sending limited data. To further ensure the security the S3 bucket cannot be publically accessed.
+
+import boto3
+import time
+import RPi.GPIO as GPIO
+import serial
+from datetime import datetime
+
+# AWS S3 Configuration
+s3 = boto3.client('s3', Asia Pacific (Sydney) ap-southeast-2')
+s3_bucket_name = 'petfooddispenser'
+s3_folder = 'sensor-data/'
+
+# Serial Configuration
+ser = serial.Serial('/dev/ttyACM0', 9600)  
+
+# GPIO Configuration
+LED_PIN = 13
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(LED_PIN, GPIO.OUT)
+
+def read_sensor_data():
+    data = ser.readline().decode('utf-8').strip()
+    sensor1_value, sensor2_value = map(int, data.split(','))
+    return sensor1_value, sensor2_value
+
+def upload_to_s3(data):
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    file_name = f"{timestamp}_sensor_data.txt"
+
+    with open(file_name, 'w') as file:
+        file.write(f"Sensor 1 Value: {data[0]}\n")
+        file.write(f"Sensor 2 Value: {data[1]}\n")
+
+    s3.upload_file(file_name, s3_bucket_name, f"{s3_folder}{file_name}")
+
+while True:
+    sensor_data = read_sensor_data()
+
+    if sensor_data[0] < 1:
+         upload_to_s3(sensor_data)
+        print("Sensor data uploaded to S3.")
+
+  
+
+    time.sleep(1800)  # Sleep for 30 minutes (1800 seconds)
