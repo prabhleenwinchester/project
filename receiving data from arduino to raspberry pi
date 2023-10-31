@@ -15,8 +15,8 @@ TWILIO_SID = 'AC72271f2e193f7f503638bdbe5349a24f'
 TWILIO_AUTH_TOKEN = 'bc372f77c322859811f059c0e58ff3c7'
 
 # Twilio Phone Numbers
-TWILIO_FROM_NUMBER = 'your_twilio_phone_number'
-TWILIO_TO_NUMBER = 'recipient_phone_number'
+TWILIO_FROM_NUMBER = '+12296291750'
+TWILIO_TO_NUMBER = 'not available due to security reasons the number is only available in the real code'
 
 client = Client(TWILIO_SID, TWILIO_AUTH_TOKEN)
 
