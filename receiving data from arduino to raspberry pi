@@ -1,1 +1,39 @@
+import serial
+import RPi.GPIO as GPIO
+from twilio.rest import Client
+
+# Arduino Serial Connection
+ser = serial.Serial('/dev/ttyACM0', 9600)  
+
+# GPIO Pin Setup for LED
+LED_PIN = 13
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(LED_PIN, GPIO.OUT)
+
+# Twilio Account SID and Auth Token
+TWILIO_SID = 'AC72271f2e193f7f503638bdbe5349a24f'
+TWILIO_AUTH_TOKEN = 'bc372f77c322859811f059c0e58ff3c7'
+
+# Twilio Phone Numbers
+TWILIO_FROM_NUMBER = 'your_twilio_phone_number'
+TWILIO_TO_NUMBER = 'recipient_phone_number'
+
+client = Client(TWILIO_SID, TWILIO_AUTH_TOKEN)
+
+def send_sms(message):
+    client.messages.create(body=message, from_=TWILIO_FROM_NUMBER, to=TWILIO_TO_NUMBER)
+
+while True:
+    data = ser.readline().decode('utf-8').strip()  # Read data from Arduino
+    
+    # Parse the data (modify based on Arduino output format)
+    sensor1_value, sensor2_value = map(int, data.split(','))
+
+    if sensor1_value < 10:
+        GPIO.output(LED_PIN, GPIO.HIGH)
+
+    if sensor2_value < 50:
+        send_sms("Food level in dispenser is low (<50 gms). The food level in the dispenser is low please refil")
+
+    # Add delays or other logic as needed
 
