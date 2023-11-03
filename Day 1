@@ -21,6 +21,20 @@ void loop() {
     Serial.print("Weight (g): ");
     Serial.println(weight);
   }
+delay(1000); // Update weight every second
 
-  delay(1000); // Update weight every second
+
+##Steps to follow
+1. Mount the sensors on the bowl and dispenser.
+2. Mount the LED on the bowl.
+3. Write the code for Arduino to get the readings from the scale body sensor on the bowl and dispenser using HX711.
+
+##Code Explanation
+
+This code helps with the physical connection of the project. After the scale body sensor has been mounted on the bowl and the dispenser,
+The code allows us to collect the weight data from the sensors. The LED has been integrated in the circuit to indicate low food levels in the bowl.
+This component helps improve the project.
+
+
+  
 }
