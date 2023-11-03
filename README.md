@@ -1,4 +1,4 @@
-project
+#project
 Smart pet food dispenser
 Pet Food Dispenser with Remote Monitoring
 
@@ -33,3 +33,5 @@ The aim of this project is to make a smart pet food dispenser using Arduino and 
 4. Write the Python code for the GSM module on Raspberry Pi.
 5. Start the system and ensure it's working.
 
+
+Download Circuit Diagram (Basic Circuit diagram.docx)
