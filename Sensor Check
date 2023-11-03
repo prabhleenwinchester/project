@@ -22,20 +22,8 @@ void loop() {
 
 
 
-Include Library: Include the HX711 library at the beginning of the code. This library enables you to work with the HX711 load cell amplifier.
+Include Library: This library allows the user to work with the HX711 amplifier.
 
-Initialize the Scale: In the setup() function, initialize a HX711 object named scale. Use the begin() method to specify the pins connected to the DT (data) and SCK (clock) pins of the HX711.
+Serial Communication:This helps in showing the information on the serial monitor.
 
-Serial Communication: Set up the serial communication with a baud rate of 9600. This is useful for debugging and displaying information on the Arduino Serial Monitor.
-
-Sensor Check Loop: The loop() function is where the main logic of your program resides. It continuously checks the status of the sensor and reads weight data.
-
-Check Sensor Status: The if statement checks if the sensor is ready. If it is, it prints "Sensor is connected."
-
-Read Weight: Use the get_units() method to read the weight from the sensor. The 10 argument specifies that it should average 10 readings for a more stable result.
-
-Print Weight: The weight value is printed to the Serial Monitor in grams.
-
-Sensor Not Found: If the sensor is not ready, it prints "Sensor not found. Check your connections."
-
-Delay: There's a 2-min delay using delay(120000), which prevents the program from flooding the Serial Monitor with data. You can adjust the delay as needed
+Delay: There's a 2-min delay using delay(120000) in the reading on the serial monitor
